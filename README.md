@@ -20,25 +20,36 @@ I followed the initial steps to make the foundation configs by making 2 VNETS - 
 Then from there deploying an Azure Firewall into the Azure Firewall subnet (in the Hub-VNET) was the next configuration, something new that I learned today.
 As the firewall subnet is like a reserved space for the firewall, so we need to deploy the Azure firewall in it by creating it in the resource groups. 
 
-Internet
-    │
-    ▼
-Public IP
-    │
-    ▼
-Azure Firewall
-    │
-    ▼
-══════════════════════════════
-        Hub VNet
-══════════════════════════════
-             │
-      VNet Peering
-             │
-══════════════════════════════
-        App VNet
-══════════════════════════════
-     │                 │
-     ▼                 ▼
-Frontend Subnet    Backend Subnet
-(Web App/VM)       (DB/VM)
+                           ┌─────────────┐
+                           │  Internet   │
+                           └──────┬──────┘
+                                  │
+                                  ▼
+                   ┌─────────────────────────┐
+                   │        Hub VNet         │
+                   │                         │
+                   │  AzureFirewallSubnet    │
+                   │           │             │
+                   │           ▼             │
+                   │    Azure Firewall       │
+                   │                         │
+                   │ Shared DNS / Security   │
+                   └───────────┬─────────────┘
+                               │
+                      VNet Peering
+                               │
+                               ▼
+                   ┌─────────────────────────┐
+                   │        App VNet         │
+                   │        (Spoke)          │
+                   │                         │
+                   │  Frontend Subnet        │
+                   │  ┌───────────────────┐  │
+                   │  │ Web/Application   │  │
+                   │  └─────────┬─────────┘  │
+                   │            │            │
+                   │  Backend Subnet         │
+                   │  ┌───────────────────┐  │
+                   │  │ DB / Backend App  │  │
+                   │  └───────────────────┘  │
+                   └─────────────────────────┘
