@@ -53,3 +53,7 @@ As the firewall subnet is like a reserved space for the firewall, so we need to 
                    │  │ DB / Backend App  │  │
                    │  └───────────────────┘  │
                    └─────────────────────────┘
+
+
+                   <img width="2787" height="2268" alt="image" src="https://github.com/user-attachments/assets/5fa19b88-20f8-4d86-963f-0c98c5eadaa9" />
+
