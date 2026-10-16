@@ -1,0 +1,6 @@
+As we only defined the Hub and Spoke VNETs (with their subnets), but we haven't deployed the Azure firewall yet in to the Azure Firewall Subnet - 
+so we will deploy that in the Hub Spoke VNET. Azure deploys the firewall using a standard name: AzureFirewallSubnet and 
+is defined privately - 10.0.0.4 /26.
+The /26 gives Azure enough IP addresses for the firewall's infrastructure.
+
+You shouldn't put VMs, application servers, or other resources in that subnet
