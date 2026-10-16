@@ -1,1 +1,0 @@
-Earlier I had made the 2 spoke VNETS - with the frontend subnet and backend subnet, peered to the Hub VNET. Now we need to setup the firewall in the hub VNET.
